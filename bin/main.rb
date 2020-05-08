@@ -1,7 +1,7 @@
 def welcome_message
   puts "Welcome to Tic Tac Toe Game"
 end
-# welcome_message
+welcome_message
 
 def user_setup
   print "Please Enter Player One name "
@@ -20,7 +20,7 @@ def user_setup
 
 end
 
-# user_setup
+user_setup
 
 puts "Game Board"
 board = [" "," "," "," "," "," "," "," "," "]
