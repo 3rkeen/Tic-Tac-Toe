@@ -1,31 +1,39 @@
-puts "Welcome to Tic Tac Toe Game"
-print "Please Enter Player One name "
-player1 = gets.chomp
-print "Please Enter Player Second name "
-player2 = gets.chomp
-
-print "Choose #{player1} X or O: "
-mark = gets.chomp
-mark.upcase!
-if mark == "X"
-    puts "X is assigned to #{player1} and O is assigned to #{player2}"
-else
-    puts "O is assigned to #{player1} and X is assigned to #{player2}"
+def welcome_message
+  puts "Welcome to Tic Tac Toe Game"
 end
+welcome_message
+
+def user_setup
+  print "Please Enter Player One name "
+  player1 = gets.chomp
+  print "Please Enter Player Second name "
+  player2 = gets.chomp
+
+  print "Choose #{player1} X or O: "
+  mark = gets.chomp
+  mark.upcase!
+  if mark == "X"
+      puts "X is assigned to #{player1} and O is assigned to #{player2}"
+  else
+      puts "O is assigned to #{player1} and X is assigned to #{player2}"
+  end
+
+end
+user_setup
 
 puts "Game Board"
-one = x
-puts "-----------"
-puts " #{one} | 2 | 3 "
-puts "-----------"
-puts " 4 | 5 | 6 "
-puts "-----------"
-puts " 7 | 8 | 9 "
-puts "-----------"
+board = [" "," "," "," "," "," "," "," "," "]
+def display_board(board)
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  puts "-----------"
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts "-----------"
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
+end
 
 def choose_num1
     print "Please User 1 Choose number from 1 to 9: "
-    
+    one = "1"
     condition = true
     while condition
         
@@ -33,6 +41,7 @@ def choose_num1
     if number1 <= 9 && number1 > 0
         condition = false
         puts "#{number1}: X "
+        one = " X "
     else 
         print "Enter valid number: "        
     end
