@@ -1,7 +1,7 @@
 def welcome_message
   puts "Welcome to Tic Tac Toe Game"
 end
-welcome_message
+# welcome_message
 
 def user_setup
   print "Please Enter Player One name "
@@ -19,7 +19,8 @@ def user_setup
   end
 
 end
-user_setup
+
+# user_setup
 
 puts "Game Board"
 board = [" "," "," "," "," "," "," "," "," "]
@@ -31,17 +32,27 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-def choose_num1
+def empty_index_board(board, index)
+    if board[index] == " " || board[index] == ""
+        true
+    else
+        false    
+    end
+end
+
+def choose_num1(board)
+    
+    arr = []
+
     print "Please User 1 Choose number from 1 to 9: "
-    one = "1"
     condition = true
     while condition
         
     number1 = gets.to_i
-    if number1 <= 9 && number1 > 0
+    if number1 <= 9 && number1 > 0 && empty_index_board(board, number1) == true 
         condition = false
-        puts "#{number1}: X "
-        one = " X "
+        board[number1-1] = "X"
+        display_board(board)
     else 
         print "Enter valid number: "        
     end
@@ -51,9 +62,10 @@ print "Please User 2 Choose number from 1 to 9: "
     while condition2
         
     number2 = gets.to_i
-    if number2 <= 9 && number2 > 0 && number2 != number1
-        condition2 = false
-        puts "#{number2}: O "
+    if number2 <= 9 && number2 > 0 && empty_index_board(board, number2) == true && number2 != number1
+         condition2 = false
+        board[number2-1] = "O"
+        display_board(board)
     else 
         print "Enter valid number: "        
     end
@@ -61,7 +73,8 @@ end
 end
 
 
-choose_num1
-choose_num1
-choose_num1
-choose_num1
+choose_num1(board)
+choose_num1(board)
+choose_num1(board)
+choose_num1(board)
+
