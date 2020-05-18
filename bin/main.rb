@@ -49,14 +49,6 @@ def board_example
   puts ' 7 | 8 | 9 '
 end
 
-def empty_index_board(board, index)
-  if board[index] == ' ' || board[index] == 'X' || board[index] == 'O'
-    true
-  else
-    false
-  end
-end
-
 def input_to_index(user_input)
   user_input.to_i - 1
 end
@@ -74,19 +66,27 @@ def valid_move?(board, index)
 end
 
 def current_player(board)
-  turn_count(board).even? ? 'X' : 'O'
+  if turn_count(board).even?
+    'X'
+  else
+    'O'
+ end
 end
 
 def turn_count(board)
   board.count { |token| token == 'X' || token == 'O' }
 end
 
-def choose_message
-  print 'Please choose number from 1 to 9: '
+def choose_message(board)
+  if turn_count(board).even?
+    print 'Please Player1 Choose number from 1 to 9: '
+  else
+    print 'Please Player2 Choose number from 1 to 9: '
+ end
 end
 board_example
 def choose_num1(board)
-  choose_message
+  choose_message(board)
   number1 = gets.to_i
   index = input_to_index(number1)
   if valid_move?(board, index)
@@ -97,19 +97,54 @@ def choose_num1(board)
     choose_num1(board)
   end
 end
+WIN_COMBINATIONS = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [6, 4, 2]
+].freeze
 
-choose_num1(board)
-choose_num1(board)
-choose_num1(board)
-choose_num1(board)
-choose_num1(board)
-choose_num1(board)
-choose_num1(board)
-choose_num1(board)
-choose_num1(board)
+def full?(board)
+  board.all? { |token| token == 'X' || token == 'O' }
+end
 
-def player_winner; end
+def draw?(board)
+  full?(board) && !won?(board)
+end
 
-puts 'Game over'
-puts "#{player_winner} won"
-puts 'VWant to play more?'
+def over?(board)
+  won?(board) || draw?(board) || full?(board)
+end
+
+def winner(board)
+  if winning_stack = won?(board)
+    board[winning_stack.first]
+  end
+end
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |stack|
+    board[stack[0]] == board[stack[1]] &&
+      board[stack[1]] == board[stack[2]] &&
+      position_taken?(board, stack[0])
+  end
+end
+
+def play(board)
+  choose_num1(board) until over?(board)
+  if won?(board)
+    if winner(board) == 'X'
+      puts 'Congratulations Player1 ! ! !'
+    else
+      puts 'Congratulations Player2 ! ! !'
+    end
+  elsif draw?(board)
+    puts 'It`s draw!'
+  end
+end
+
+play(board)
