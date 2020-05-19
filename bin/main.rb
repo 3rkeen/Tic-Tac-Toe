@@ -138,9 +138,9 @@ def play(board)
   choose_num1(board) until over?(board)
   if won?(board)
     if winner(board) == 'X'
-      puts 'Congratulations Player1 ! ! !'
+      puts 'Congratulations Player1 !!!'
     else
-      puts 'Congratulations Player2 ! ! !'
+      puts 'Congratulations Player2 !!!'
     end
   elsif draw?(board)
     puts 'It`s draw!'
