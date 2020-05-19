@@ -7,26 +7,34 @@ def user_setup
   print 'Please Enter Player One name '
   player1 = gets.chomp
   player1.upcase!
-  print 'Please Enter Player Second name '
-  player2 = gets.chomp
-  player2.upcase!
+  player_name_check = true
+  while player_name_check
+    print 'Please Enter Player Second name '
+    player2 = gets.chomp
+    player2.upcase!
+    if player2 != player1
 
-  chosen = true
-  while chosen
-    print "Choose #{player1} 'X' or 'O': "
-    mark = gets.chomp
-    mark.upcase!
-    if mark == 'X'
-      chosen = false
-      puts "'X' is assigned to #{player1} and 'O' is assigned to #{player2}"
-    elsif mark == 'O'
-      chosen = false
-      puts "'O' is assigned to #{player1} and 'X' is assigned to #{player2}"
+      player_name_check = false
+      chosen = true
+      while chosen
+        print "Choose #{player1} 'X' or 'O': "
+        mark = gets.chomp
+        mark.upcase!
+        if mark == 'X'
+          chosen = false
+          puts "'X' is assigned to #{player1} and 'O' is assigned to #{player2}"
+        elsif mark == 'O'
+          chosen = false
+          puts "'O' is assigned to #{player1} and 'X' is assigned to #{player2}"
+        else
+          puts 'Your choise is invalid. Please chhoose again.'
+        end
+      end
     else
-
-      puts 'Your choise is invalid. Please chhoose again.'
+      puts 'Name is Invalid! '
     end
-end
+
+  end
 end
 
 user_setup
