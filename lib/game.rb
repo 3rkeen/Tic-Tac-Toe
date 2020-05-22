@@ -1,11 +1,11 @@
 require_relative './player.rb'
 
 class Game
-  attr_reader :board, :player1, :player2, :X, :O
+  attr_reader :board, :player_x, :player_x, :X, :O
   def initialize(players, board = (1..9).to_a)
     @board = board
-    @player1 = Player.new(players)
-    @player2 = Player.new(players)
+    @player_x = Player.new(players)
+    @player_y = Player.new(players)
   end
 
   WIN_COMBINATIONS = [
@@ -40,11 +40,11 @@ class Game
   end
 
   def turn_player
-    @board.count { |token| token == :X || token == :O }
+    @board.select { |i| %i[X O].include?(i) }.size
   end
 
   def numbers
-    numbers = @board.select { |i| (1..9).include?(i) }
+    @board.select { |i| (1..9).include?(i) }
   end
 
   def valid_move?(position)
@@ -64,11 +64,11 @@ class Game
   end
 
   def current_player
-    current_player = if turn_player.even?
-                       :X
-                     else
-                       :O
-   end
+    if turn_player.even?
+      :X
+    else
+      :O
+    end
   end
 
   def winner?

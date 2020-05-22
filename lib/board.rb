@@ -7,18 +7,18 @@ class Board < Game
 
   def welcome_message
     puts 'Welcome to Tic Tac Toe ! ! !'
-    end
+  end
 
   def user_setup
     print 'Player 1: What is your name?:'
-    @@player1 = gets.chomp
-    @@player1.upcase!
+    @@player_x = gets.chomp
+    @@player_x.upcase!
     name = true
     while name
       print 'Player 2: What is your name?:'
-      @@player2 = gets.chomp
-      @@player2.upcase!
-      if @@player2 != @@player1
+      @@player_y = gets.chomp
+      @@player_y.upcase!
+      if @@player_y != @@player_x
         name = false
       else
         puts 'Please Choose Different Name'
@@ -27,7 +27,7 @@ class Board < Game
   end
 
   def start_game
-    puts "X is #{@@player1} and O #{@@player2}"
+    puts "X is #{@@player_x} and O #{@@player_y}"
     puts 'Game Start!'
   end
 
@@ -47,9 +47,9 @@ class Board < Game
     player = @game.current_player
     numbers = @game.numbers
     if player == :X
-      puts "#{@@player1} it is your turn ! ! !"
+      puts "#{@@player_x} it is your turn ! ! !"
     else
-      puts "#{@@player2} it is your turn ! ! !"
+      puts "#{@@player_y} it is your turn ! ! !"
     end
     puts "Please choose numbers #{numbers}"
   end
@@ -72,9 +72,9 @@ class Board < Game
     move until @game.end?
     if @game.won
       if @game.winner? == :X
-        puts "#{@@player1} You won ! ! !"
+        puts "#{@@player_x} You won ! ! !"
       else
-        puts "#{@@player2} You won ! ! !"
+        puts "#{@@player_y} You won ! ! !"
       end
     elsif @game.draw?
       puts 'It is a draw ! ! !'
