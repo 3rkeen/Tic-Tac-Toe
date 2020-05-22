@@ -1,7 +1,7 @@
 require_relative './player.rb'
 
 class Game
-  attr_reader :board, :player_x, :player_y, :X, :O
+  attr_reader :board, :player_x, :player_y, :x, :o
   def initialize(players, board = (1..9).to_a)
     @board = board
     @player_x = Player.new(players)
