@@ -1,4 +1,3 @@
-
 require_relative '../lib/game.rb'
 
 class Board < Game
