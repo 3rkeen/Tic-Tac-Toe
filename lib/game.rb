@@ -64,19 +64,11 @@ class Game
   end
 
   def current_player
-    if turn_player.even?
-      :X
-    else
-      :O
-    end
+    (turn_player.even? == false)?  :X : :O
   end
 
   def winner?
-    if @board[won.first] == :X
-      :X
-    else
-      :O
-    end
+     (@board[won.first] == :X)?  :X : :O
   end
 
   def game_end
